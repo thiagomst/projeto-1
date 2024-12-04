@@ -1,4 +1,3 @@
-// Dados simulados (substituir por dados do servidor ao integrar com Flask)
 const empresas = [
     { id: 1, nome: "Senac", contato: "contatoA@email.com", servico: "Desenvolvimento" },
     { id: 2, nome: "Senai", contato: "contatoB@email.com", servico: "Consultoria" },

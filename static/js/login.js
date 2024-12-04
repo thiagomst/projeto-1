@@ -15,13 +15,12 @@ loginForm.addEventListener('submit', async (e) => {
         body: `email=${email}&password=${password}`
     });
 
-    // Verifica se a resposta foi bem-sucedida
     if (response.ok) {
         // Salvar estado de login no cliente, caso seja necessário
         localStorage.setItem('loggedIn', true);
         
         // Redirecionar para a página de administração
-        window.location.href = '/admin';  // Redireciona para a rota '/admin' no Flask
+        window.location.href = '/admin';
     } else {
         alert('Credenciais inválidas!');
     }
