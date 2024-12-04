@@ -1,52 +1,42 @@
-from flask import Flask, request, jsonify, render_template, redirect, session, url_for
-from werkzeug.security import check_password_hash
+from flask import Flask, render_template, redirect, url_for, session, request
 
 app = Flask(__name__)
-app.secret_key = "sua_chave_secreta_aqui"  # Necessário para usar 'session'
+app.secret_key = "chave_secreta"  # Chave secreta para gerenciar sessões no Flask
 
-# Dados fictícios - Substitua pelo banco de dados
-users = {
-    "empresa@exemplo.com": {
-        "password": "hashed_password_aqui",  # Substitua por senhas realmente hashadas
-    }
-}
-
-@app.route("/api/login", methods=["POST"])
-def login():
-    data = request.json
-    email = data.get("email")
-    password = data.get("password")
-
-    user = users.get(email)
-    if user and check_password_hash(user["password"], password):
-        session["logged_in"] = True  # Define o usuário como logado
-        return jsonify({"success": True})
-    return jsonify({"success": False, "message": "Email ou senha inválidos!"})
-
-@app.route("/login", methods=["GET", "POST"])
-def login_page():
-    if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
-
-        user = users.get(email)
-        if user and check_password_hash(user["password"], password):
-            session["logged_in"] = True
-            return redirect("/admin")
-        return render_template("login.html", error="Email ou senha inválidos!")
-
-    return render_template("login.html")
-
+# Rota de administração (protegida por login)
 @app.route("/admin")
-def admin_page():
-    if not session.get("logged_in"):
-        return redirect(url_for("login_page"))  # Redireciona para a página de login
-    return render_template("admin.html")
+def admin():
+    if "user" in session:  # Verifica se o usuário está logado
+        return render_template("admin.html")  # Página de administração
+    else:
+        return redirect(url_for("login"))  # Redireciona para a página de login se não estiver logado
 
-@app.route("/logout")
-def logout():
-    session.pop("logged_in", None)  # Remove o usuário da sessão
-    return redirect(url_for("login_page"))
+# Rota de login
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        
+        # Validação de credenciais (substitua por banco de dados real no futuro)
+        if email == "admin@example.com" and password == "admin123":
+            session["user"] = email  # Armazena o email na sessão
+            return redirect(url_for("admin"))  # Redireciona para a página de administração
+        else:
+            error_message = "Credenciais inválidas"
+            return render_template("login.html", error=error_message)  # Exibe a mensagem de erro na página de login
+
+    return render_template("login.html")  # Renderiza a página de login
+
+# Rota de home
+@app.route("/home")
+def home():
+    return render_template("home.html")  # Renderiza a página de home
+
+# Rota de cadastro
+@app.route("/cadastro")
+def cadastro():
+    return render_template("cadastro.html")  # Renderiza a página de cadastro
 
 if __name__ == "__main__":
     app.run(debug=True)

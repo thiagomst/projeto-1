@@ -57,5 +57,10 @@ function deletarEmpresa(id) {
     }
 }
 
+function logout() {
+    localStorage.removeItem('loggedIn');
+    window.location.href = "/templates/login.html";
+}
+
 // Inicializando a tabela
 renderTabela();

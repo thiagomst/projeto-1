@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administração</title>
     <link rel="stylesheet" href="/static/css/admin.css">
 </head>
+
 <body>
     <header>
         <img src="/static/img/logo.png" alt="Logo" class="logo">
         <nav>
-            <a href="/templates/home.html">Home</a>
-            <a href="/templates/cadastro.html">Cadastro</a>
-            <a href="/templates/admin.html">Administração</a>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('cadastro') }}">Cadastro</a>
+            <a href="{{ url_for('admin') }}">Administração</a>
         </nav>
     </header>
     <main>
@@ -33,10 +35,12 @@
                 </tbody>
             </table>
         </section>
+        <button onclick="logout()">Sair</button>
     </main>
     <footer>
         <p>&copy; 2024 - Conexão Tech</p>
     </footer>
     <script src="/static/js/script.js"></script>
 </body>
+
 </html>

@@ -1,24 +1,28 @@
-document.getElementById("login-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
+const loginForm = document.getElementById('login-form');
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    // Enviar os dados para o servidor
-    const response = await fetch("/api/login", {
-        method: "POST",
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Enviar dados de login para o Flask
+    const response = await fetch('/login', {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({ email, password }),
+        body: `email=${email}&password=${password}`
     });
 
-    const result = await response.json();
-
-    if (result.success) {
+    // Verifica se a resposta foi bem-sucedida
+    if (response.ok) {
+        // Salvar estado de login no cliente, caso seja necessário
+        localStorage.setItem('loggedIn', true);
+        
         // Redirecionar para a página de administração
-        window.location.href = "/templates/admin.html";
+        window.location.href = '/admin';  // Redireciona para a rota '/admin' no Flask
     } else {
-        alert(result.message || "Credenciais inválidas!");
+        alert('Credenciais inválidas!');
     }
 });
