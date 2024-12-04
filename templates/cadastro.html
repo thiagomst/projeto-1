@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Empresa</title>
+    <link rel="stylesheet" href="/static/css/cadastro.css">
+</head>
+<body>
+    <header>
+        <img src="/static/img/logo.png" alt="Logo" class="logo">
+        <nav>
+            <a href="/templates/home.html">Home</a>
+            <a href="/templates/cadastro.html">Cadastro</a>
+            <a href="/templates/admin.html">Administração</a>
+        </nav>
+    </header>
+    <main>
+        <section class="form-section">
+            <h1>Cadastre sua Empresa</h1>
+            <form id="cadastro-form">
+                <label for="nome">Nome da Empresa:</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="contato">Contato (Email ou Telefone):</label>
+                <input type="text" id="contato" name="contato" required>
+                
+                <label for="tipo_servico">Tipo de Serviço:</label>
+                <select id="tipo_servico" name="tipo_servico">
+                    <option value="desenvolvimento">Desenvolvimento de Sistemas</option>
+                    <option value="consultoria">Consultoria</option>
+                    <option value="outro">Outro</option>
+                </select>
+                
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem"></textarea>
+
+                <!-- Campo para Proposta -->
+                <label for="proposta">Proposta da Empresa:</label>
+                <textarea id="proposta" name="proposta" placeholder="Descreva brevemente a proposta da sua empresa..." required></textarea>
+                
+                <!-- Datas de Início e Entrega -->
+                <label for="data_inicio">Data de Início do Projeto:</label>
+                <input type="date" id="data_inicio" name="data_inicio" required>
+                
+                <label for="data_entrega">Data de Entrega do Projeto:</label>
+                <input type="date" id="data_entrega" name="data_entrega" required>
+                
+                <!-- Linguagens e Bibliotecas -->
+                <label for="linguagens">Linguagens de Programação e Bibliotecas:</label>
+                <select id="linguagens" name="linguagens[]" multiple required>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="php">PHP</option>
+                    <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                    <option value="react">React</option>
+                    <option value="vue">Vue.js</option>
+                    <option value="angular">Angular</option>
+                    <option value="django">Django</option>
+                    <option value="flask">Flask</option>
+                </select>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 - Conexão Tech</p>
+    </footer>
+</body>
+</html>

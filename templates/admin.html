@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+    <header>
+        <img src="/static/img/logo.png" alt="Logo" class="logo">
+        <nav>
+            <a href="/templates/home.html">Home</a>
+            <a href="/templates/cadastro.html">Cadastro</a>
+            <a href="/templates/admin.html">Administração</a>
+        </nav>
+    </header>
+    <main>
+        <section class="admin-section">
+            <h1>Gerenciamento de Empresas</h1>
+            <div class="feedback" id="feedback"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Contato</th>
+                        <th>Serviço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table">
+                    <!-- Empresas serão listadas aqui dinamicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 - Conexão Tech</p>
+    </footer>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
